@@ -50,9 +50,6 @@ const SignupForm = ({}: { handleModalClose: () => void }) => {
       const username = userFormData.username;
       const email = userFormData.email;
       const password = userFormData.password;
-      console.log(`username: ${username}`);
-      console.log(`email: ${email}`);
-      console.log(`password: ${password}`);
       const { data } = await addUser({
         variables: { uname: username, em: email, password },
       });
@@ -61,7 +58,7 @@ const SignupForm = ({}: { handleModalClose: () => void }) => {
         throw new Error("Something went wrong with adding user!");
       }
 
-      Auth.login(data.login.token);
+      Auth.login(data.addUser.token);
     } catch (err) {
       console.error(err);
       setShowAlert(true);
